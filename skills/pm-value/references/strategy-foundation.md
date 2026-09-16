@@ -8,7 +8,7 @@
 
 ### 1. 立项文档（价值与范围）
 
-在 `01_STRATEGY/` 内维护一份**立项类文档**，聚焦**项目的价值决策依据**。命名可参考 [conventions](../../../shared/conventions.md) 中的 Strategy doc 约定（如 `v1_0_value_and_scope_YYYYMMDD.md`），具体文件名以项目与用户约定为准。
+在 `01_STRATEGY/` 内维护一份**立项类文档**，聚焦**项目的价值决策依据**。命名可参考 [conventions](../../_shared/conventions.md) 中的 Strategy doc 约定（如 `v1_0_value_and_scope_YYYYMMDD.md`），具体文件名以项目与用户约定为准。
 
 **文档目的：**
 - 沉淀价值锚点、范围边界、目标用户与场景、痛点与成功指标、关键结构性决策；
@@ -34,7 +34,7 @@
 
 ### 2. DECISIONS.md（业务决策记录）
 
-记录具体业务判断的「结论与理由」，便于团队查阅「当时为什么这么决定」。写法与触发时机见 [memory](../../../shared/memory.md) 中对 `docs/01_STRATEGY/DECISIONS.md` 的说明。
+记录具体业务判断的「结论与理由」，便于团队查阅「当时为什么这么决定」。写法与触发时机见 [memory](../../_shared/memory.md) 中对 `docs/01_STRATEGY/DECISIONS.md` 的说明。
 
 **与立项文档的关系：** 重大价值或范围相关的判断，既可在立项文档的相关位置保留（如引用或小结），也应在 DECISIONS 中记一笔，便于按决策 ID 追溯；两者互补，不替代。
 

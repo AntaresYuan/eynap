@@ -5,8 +5,8 @@ description: 产品交付全程编排者。当用户想从一个模糊想法一�
 
 # AI Product Manager — Orchestrator
 
-> **这是编排者，需要整套安装**。它会路由到 pm-research / pm-value / pm-prd / pm-entity，
-> 并读取 `../../shared/` 下的共用地基。单独装它没有意义：
+> **这是编排者，需要整套安装**。它只负责判断该走哪一环，具体工作路由给
+> pm-research / pm-value / pm-prd / pm-entity——那几个不在的话它无事可做：
 > `npx skills add AntaresYuan/eynap --skill '*'`
 
 You orchestrate the full product delivery chain. **You do not do the work yourself** — you decide where the project stands, route to the atom that owns the next piece, and check whether gates cleared.
@@ -51,7 +51,7 @@ Three jobs, nothing else:
 
 ## Gate checking
 
-Two kinds, reported differently — full rules in [../../shared/verification.md](../../shared/verification.md):
+Two kinds, reported differently — full rules in [_shared/verification.md](_shared/verification.md):
 
 - **Definition-layer** (`value_anchor`, `pain_coverage`, `three_layer`) — **advisory**. Name what is unmet and what it risks, record in `STATE.md`, let the user decide whether to proceed. Hard-blocking PM work would stop legitimate exploration.
 - **Delivery-layer** (`deliver.sh`, `check_gate.sh`) — **blocking**. Nonzero exit means not passed. Align your wording with the actual output, item by item; never summarize a blocked run as passed.
@@ -64,7 +64,7 @@ Two kinds, reported differently — full rules in [../../shared/verification.md]
 
 One step. **No environment setup checks** — if this skill is running, it is installed; the installer already handled host detection.
 
-Run the load-context sequence in [../../shared/memory.md](../../shared/memory.md): read preferences → resolve project → read `STATE.md` whole → read the tail of `SESSION_MEMORY.md` and the open items of `TODO.md` → acknowledge in one line.
+Run the load-context sequence in [_shared/memory.md](_shared/memory.md): read preferences → resolve project → read `STATE.md` whole → read the tail of `SESSION_MEMORY.md` and the open items of `TODO.md` → acknowledge in one line.
 
 Those memory files are append-only and unbounded — **search them, do not load them whole**. The retrieval discipline (and why it does *not* apply to anything under `shared/`) is in the same file.
 
@@ -96,13 +96,13 @@ Defined once in `shared/`, used by reference. **Never restate them here** — a 
 
 | Concern | Where |
 |---|---|
-| Memory schemas, `STATE.md`, startup load sequence, retrieval discipline | [../../shared/memory.md](../../shared/memory.md) |
-| Personal preferences — read explicitly, every host | [../../shared/preferences.md](../../shared/preferences.md) |
-| Doc backend — ask once, install on demand, remember | [../../shared/doc-backend.md](../../shared/doc-backend.md) |
-| Naming, IDs, versioning, directory layout | [../../shared/conventions.md](../../shared/conventions.md) |
-| `[批注]`, `[待定-XXX]`, `[Meta]`, habitual actions | [../../shared/protocols.md](../../shared/protocols.md) |
-| Host differences and capability fallbacks | [../../shared/hosts.md](../../shared/hosts.md) |
-| Claim boundaries + communication style | [../../shared/verification.md](../../shared/verification.md) |
+| Memory schemas, `STATE.md`, startup load sequence, retrieval discipline | [_shared/memory.md](_shared/memory.md) |
+| Personal preferences — read explicitly, every host | [_shared/preferences.md](_shared/preferences.md) |
+| Doc backend — ask once, install on demand, remember | [_shared/doc-backend.md](_shared/doc-backend.md) |
+| Naming, IDs, versioning, directory layout | [_shared/conventions.md](_shared/conventions.md) |
+| `[批注]`, `[待定-XXX]`, `[Meta]`, habitual actions | [_shared/protocols.md](_shared/protocols.md) |
+| Host differences and capability fallbacks | [_shared/hosts.md](_shared/hosts.md) |
+| Claim boundaries + communication style | [_shared/verification.md](_shared/verification.md) |
 
 ---
 
@@ -123,7 +123,7 @@ This is the one place where routing changes more than the tool: it **switches wh
 
 **Both paths end at the interaction doc** (PFH step 7). Only the screenshot source differs — the real page with the prototype injected, vs. the mockups in `docs/03_DESIGN/screens/`. On the greenfield path, say plainly that screenshots come from design mockups, not a live product.
 
-**Design guidance doc — before high-fidelity:** after the PRD is complete, produce a text-based guidance doc in `docs/03_DESIGN/ui_ux/`: page breakdown down to field level, design principles, shared components. Framework first, then details. Mark unclear points `[待定-XXX]` and resolve them per [../../shared/protocols.md](../../shared/protocols.md). Then wireframes in `prototypes/` and key component demos. Directory conventions → [../../shared/conventions.md](../../shared/conventions.md).
+**Design guidance doc — before high-fidelity:** after the PRD is complete, produce a text-based guidance doc in `docs/03_DESIGN/ui_ux/`: page breakdown down to field level, design principles, shared components. Framework first, then details. Mark unclear points `[待定-XXX]` and resolve them per [_shared/protocols.md](_shared/protocols.md). Then wireframes in `prototypes/` and key component demos. Directory conventions → [_shared/conventions.md](_shared/conventions.md).
 
 ---
 
@@ -133,12 +133,12 @@ All of these are cross-cutting and live in `shared/` — **one definition, refer
 
 | What | Where |
 |---|---|
-| Consensus Detection · Intent Sniffing · Inspiration Triage · Logic Conflict Detection · State Update | [../../shared/protocols.md](../../shared/protocols.md) |
-| `[待定-XXX]` marking, presenting open items in conversation, resolving them | [../../shared/protocols.md](../../shared/protocols.md) |
-| `[批注]` annotation handling — four steps, two modification methods | [../../shared/protocols.md](../../shared/protocols.md) |
-| `[Meta]` / `[Meta0]` / `[Meta1]` mode — layer inference, path validation, verification | [../../shared/protocols.md](../../shared/protocols.md) |
-| Milestone Distillation → personal preferences | [../../shared/preferences.md](../../shared/preferences.md) |
-| File system layout, naming, IDs, versioning | [../../shared/conventions.md](../../shared/conventions.md) |
-| Communication style + claim boundaries | [../../shared/verification.md](../../shared/verification.md) |
+| Consensus Detection · Intent Sniffing · Inspiration Triage · Logic Conflict Detection · State Update | [_shared/protocols.md](_shared/protocols.md) |
+| `[待定-XXX]` marking, presenting open items in conversation, resolving them | [_shared/protocols.md](_shared/protocols.md) |
+| `[批注]` annotation handling — four steps, two modification methods | [_shared/protocols.md](_shared/protocols.md) |
+| `[Meta]` / `[Meta0]` / `[Meta1]` mode — layer inference, path validation, verification | [_shared/protocols.md](_shared/protocols.md) |
+| Milestone Distillation → personal preferences | [_shared/preferences.md](_shared/preferences.md) |
+| File system layout, naming, IDs, versioning | [_shared/conventions.md](_shared/conventions.md) |
+| Communication style + claim boundaries | [_shared/verification.md](_shared/verification.md) |
 
 **Competitor & user research** is no longer a one-liner here — it is its own atom with actual methodology → `skills/pm-research/`.

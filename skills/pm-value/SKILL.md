@@ -15,13 +15,13 @@ description: 产出一份立项文档——把模糊想法收敛成明确的价�
 |---|---|
 | **有上游时读** | `docs/00_MEMORY/CONTEXT_SNAPSHOT.md` 里已记录的真实故事与硬约束；`docs/04_RESOURCES/` 的调研报告（若 `pm-research` 跑过） |
 | **无上游时问** | 开放式起手式（下方 Step 1），让用户自己讲想法 |
-| **产出落点** | `docs/01_STRATEGY/` —— 命名规则见 [../../shared/conventions.md](../../shared/conventions.md) |
+| **产出落点** | `docs/01_STRATEGY/` —— 命名规则见 [_shared/conventions.md](_shared/conventions.md) |
 | **无项目目录时** | 产出物直接在对话里给用户，**不落盘**。不要为了有地方写而擅自初始化项目 |
 
-启动流程、记忆读写、`[批注]` / `[待定-XXX]` / `[Meta]` 协议、命名与版本规则、表述边界与沟通风格 —— 全部见 `shared/`：[memory](../../shared/memory.md) · [preferences](../../shared/preferences.md) · [conventions](../../shared/conventions.md) · [protocols](../../shared/protocols.md) · [hosts](../../shared/hosts.md) · [verification](../../shared/verification.md) · [doc-backend](../../shared/doc-backend.md)
+启动流程、记忆读写、`[批注]` / `[待定-XXX]` / `[Meta]` 协议、命名与版本规则、表述边界与沟通风格 —— 全部见 `shared/`：[memory](_shared/memory.md) · [preferences](_shared/preferences.md) · [conventions](_shared/conventions.md) · [protocols](_shared/protocols.md) · [hosts](_shared/hosts.md) · [verification](_shared/verification.md) · [doc-backend](_shared/doc-backend.md)
 
 
-> **单独安装时**：本技能引用的 `../../shared/` 是全套共用的地基。若这些文件不存在（例如只装了单个技能），按本文自身的约定执行即可；要完整行为请装整套：`npx skills add AntaresYuan/eynap --skill '*'`。
+> `_shared/` 是全套共用的地基（记忆、命名、协议、核查），每个技能目录各带一份，单独安装也能用。改动只改仓库根部的 `shared/`，再跑 `scripts/sync_shared.sh`。
 
 ---
 
@@ -66,7 +66,7 @@ Lock in one **Tangible Anchor** — the concrete, observable thing that proves t
 - *C-side lens (Psychological Mirror):* Exact before/after emotional state in user language ("from dreading Monday planning → to starting the week with a clear head").
 - *Physical metric:* Time / cost / steps — only for incremental solutions
 
-**Gate — `value_anchor`:** At least one Tangible Anchor confirmed **by the user** and logged. Advisory, not blocking: if the user wants to move on with a fragile anchor, say what it puts at risk, record the gate as unmet in `STATE.md`, and proceed. Never report the anchor as established before the user confirms it → [verification](../../shared/verification.md).
+**Gate — `value_anchor`:** At least one Tangible Anchor confirmed **by the user** and logged. Advisory, not blocking: if the user wants to move on with a fragile anchor, say what it puts at risk, record the gate as unmet in `STATE.md`, and proceed. Never report the anchor as established before the user confirms it → [verification](_shared/verification.md).
 
 ### Optional Step — The "Human Nature" Challenge (Anti-corruption)
 

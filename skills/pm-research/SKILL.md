@@ -15,15 +15,15 @@ description: 产出一份用户调研或竞品分析报告。当用户需要了�
 |---|---|
 | **有上游时读** | `docs/01_STRATEGY/` 立项文档的目标用户与典型场景；`CONTEXT_SNAPSHOT.md` 里的真实故事 |
 | **无上游时问** | **研究对象**（哪类用户 / 哪个品类的产品）+ **要回答什么问题**（决策依赖它什么）。一次问完 |
-| **产出落点** | `docs/04_RESOURCES/` —— 命名规则见 [../../shared/conventions.md](../../shared/conventions.md) |
+| **产出落点** | `docs/04_RESOURCES/` —— 命名规则见 [_shared/conventions.md](_shared/conventions.md) |
 | **无项目目录时** | 报告直接在对话里给用户，**不落盘** |
 
 **天然不依赖上游。** 这是七个原子里唯一可以零上游独立成立的——没有立项文档也能做，反过来调研结论正好喂给 `pm-value`。
 
-启动流程、记忆读写、协议、命名规则、表述边界与沟通风格 —— 见 `shared/`：[memory](../../shared/memory.md) · [preferences](../../shared/preferences.md) · [conventions](../../shared/conventions.md) · [protocols](../../shared/protocols.md) · [hosts](../../shared/hosts.md) · [verification](../../shared/verification.md) · [doc-backend](../../shared/doc-backend.md)
+启动流程、记忆读写、协议、命名规则、表述边界与沟通风格 —— 见 `shared/`：[memory](_shared/memory.md) · [preferences](_shared/preferences.md) · [conventions](_shared/conventions.md) · [protocols](_shared/protocols.md) · [hosts](_shared/hosts.md) · [verification](_shared/verification.md) · [doc-backend](_shared/doc-backend.md)
 
 
-> **单独安装时**：本技能引用的 `../../shared/` 是全套共用的地基。若这些文件不存在（例如只装了单个技能），按本文自身的约定执行即可；要完整行为请装整套：`npx skills add AntaresYuan/eynap --skill '*'`。
+> `_shared/` 是全套共用的地基（记忆、命名、协议、核查），每个技能目录各带一份，单独安装也能用。改动只改仓库根部的 `shared/`，再跑 `scripts/sync_shared.sh`。
 
 ---
 
@@ -57,7 +57,7 @@ Both often needed. **Do them as separate passes with separate conclusions** — 
 | **公开二手讨论** — 论坛、社媒、评测里的用户抱怨 | Medium | 检索工具 |
 | **推断** — 从产品形态倒推用户行为 | Weakest | 只能作为假设，**必须标注为推断** |
 
-**Never present the bottom row as the top row.** 报告里逐条标注证据级别；只有二手资料时，结论必须写成"基于公开二手资料"→ [verification](../../shared/verification.md)。
+**Never present the bottom row as the top row.** 报告里逐条标注证据级别；只有二手资料时，结论必须写成"基于公开二手资料"→ [verification](_shared/verification.md)。
 
 ### A2 · No first-hand access? Design the instrument instead
 

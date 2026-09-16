@@ -16,10 +16,10 @@ description: 产出一份实体状态表与转移矩阵——状态定义、正�
 | **产出落点** | `docs/02_PRD/` —— Framework PRD 第 4 节，或单独的实体文档 |
 | **无项目目录时** | 状态表与转移矩阵直接在对话里给用户，**不落盘** |
 
-启动流程、记忆读写、协议、命名规则、表述边界与沟通风格 —— 见 `shared/`：[memory](../../shared/memory.md) · [preferences](../../shared/preferences.md) · [conventions](../../shared/conventions.md) · [protocols](../../shared/protocols.md) · [hosts](../../shared/hosts.md) · [verification](../../shared/verification.md) · [doc-backend](../../shared/doc-backend.md)
+启动流程、记忆读写、协议、命名规则、表述边界与沟通风格 —— 见 `shared/`：[memory](_shared/memory.md) · [preferences](_shared/preferences.md) · [conventions](_shared/conventions.md) · [protocols](_shared/protocols.md) · [hosts](_shared/hosts.md) · [verification](_shared/verification.md) · [doc-backend](_shared/doc-backend.md)
 
 
-> **单独安装时**：本技能引用的 `../../shared/` 是全套共用的地基。若这些文件不存在（例如只装了单个技能），按本文自身的约定执行即可；要完整行为请装整套：`npx skills add AntaresYuan/eynap --skill '*'`。
+> `_shared/` 是全套共用的地基（记忆、命名、协议、核查），每个技能目录各带一份，单独安装也能用。改动只改仓库根部的 `shared/`，再跑 `scripts/sync_shared.sh`。
 
 ---
 
@@ -127,7 +127,7 @@ A feature is only "ready to build" when all three are clear:
 | Frontend | Key pages/components, information hierarchy, primary interactions |
 | Backend Logic | Entities touched, business rules, state changes, AI call points |
 
-**Advisory, not blocking.** When a layer is thin, name which one and what it risks, record it in `STATE.md`, and let the user decide. **Never say "ready to build" while a layer is incomplete** → [verification](../../shared/verification.md).
+**Advisory, not blocking.** When a layer is thin, name which one and what it risks, record it in `STATE.md`, and let the user decide. **Never say "ready to build" while a layer is incomplete** → [verification](_shared/verification.md).
 
 ---
 

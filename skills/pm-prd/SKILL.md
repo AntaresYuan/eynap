@@ -15,13 +15,13 @@ description: 产出或评审一份 PRD——Framework PRD（关键用户旅程 +
 |---|---|
 | **有上游时读** | `docs/01_STRATEGY/` 立项文档的价值锚点、目标用户、In/Out scope；`CONTEXT_SNAPSHOT.md` 的痛点原话 |
 | **无上游时问** | 背景、目标用户、要解决什么问题（一次问完，不要挤牙膏） |
-| **产出落点** | `docs/02_PRD/` —— 命名规则见 [../../shared/conventions.md](../../shared/conventions.md) |
+| **产出落点** | `docs/02_PRD/` —— 命名规则见 [_shared/conventions.md](_shared/conventions.md) |
 | **无项目目录时** | 产出物直接在对话里给用户，**不落盘** |
 
-启动流程、记忆读写、协议、命名规则、表述边界与沟通风格 —— 见 `shared/`：[memory](../../shared/memory.md) · [preferences](../../shared/preferences.md) · [conventions](../../shared/conventions.md) · [protocols](../../shared/protocols.md) · [hosts](../../shared/hosts.md) · [verification](../../shared/verification.md) · [doc-backend](../../shared/doc-backend.md)
+启动流程、记忆读写、协议、命名规则、表述边界与沟通风格 —— 见 `shared/`：[memory](_shared/memory.md) · [preferences](_shared/preferences.md) · [conventions](_shared/conventions.md) · [protocols](_shared/protocols.md) · [hosts](_shared/hosts.md) · [verification](_shared/verification.md) · [doc-backend](_shared/doc-backend.md)
 
 
-> **单独安装时**：本技能引用的 `../../shared/` 是全套共用的地基。若这些文件不存在（例如只装了单个技能），按本文自身的约定执行即可；要完整行为请装整套：`npx skills add AntaresYuan/eynap --skill '*'`。
+> `_shared/` 是全套共用的地基（记忆、命名、协议、核查），每个技能目录各带一份，单独安装也能用。改动只改仓库根部的 `shared/`，再跑 `scripts/sync_shared.sh`。
 
 PRD 的结构标准、两级文档层次、多功能点 PRD 模板、写作原则 → [references/prd-protocols.md](references/prd-protocols.md)
 
@@ -63,7 +63,7 @@ For each core journey in the MVP, explicitly map:
 - Which original pain points remain unaddressed
 - In user-perspective language, not technical language
 
-**Gate — `pain_coverage`:** Scan every pain point from the strategy doc. Each must have a solution path in the defined CUJs, or be explicitly named as a deferral and logged in `docs/TODO.md`. **Advisory**: name what is uncovered, record it in `STATE.md`, let the user decide whether to proceed — do not hard-block exploration, and never call coverage complete when it is not → [verification](../../shared/verification.md).
+**Gate — `pain_coverage`:** Scan every pain point from the strategy doc. Each must have a solution path in the defined CUJs, or be explicitly named as a deferral and logged in `docs/TODO.md`. **Advisory**: name what is uncovered, record it in `STATE.md`, let the user decide whether to proceed — do not hard-block exploration, and never call coverage complete when it is not → [verification](_shared/verification.md).
 
 ---
 
@@ -108,7 +108,7 @@ When the user brings a PRD to review rather than write:
 1. Read it in full first — do not review from a summary.
 2. Check it against the structure standard in [references/prd-protocols.md](references/prd-protocols.md): are the two levels collapsed into one file? Does every feature trace back to a pain point?
 3. Check the three-layer gate coverage (User Flow / Frontend / Backend Logic) and name which layer is thin.
-4. Raise findings as `[待定-XXX]` in the doc **and** explain each in conversation → [protocols](../../shared/protocols.md).
+4. Raise findings as `[待定-XXX]` in the doc **and** explain each in conversation → [protocols](_shared/protocols.md).
 5. **Do not rewrite the document without confirmation.** Propose, then execute.
 
 ---
