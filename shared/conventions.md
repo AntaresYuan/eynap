@@ -76,7 +76,7 @@ All IDs are zero-padded to three digits and **never reused**, even after an item
 └── .ai-pm-prefs.md                  # 个人偏好（见 shared/preferences.md）
 ```
 
-> This layout applies to local-disk hosts. In **Mira**, Layer 2 lives in Feishu under the fixed root folder → [hosts.md](hosts.md).
+> This layout applies to local-disk hosts. On a **cloud-doc substrate**, Layer 2 lives in a shared cloud-drive folder → [hosts.md](hosts.md).
 
 ### What goes in 03_DESIGN
 

@@ -23,7 +23,7 @@ Layer 1 — Personal Preferences
 
 Layer 2 — Project Memory
   What:  Decisions, entities, flows, todos, progress for one specific project
-  Where: {project_root}/docs/ — see hosts.md for the Mira/Feishu variant
+  Where: {project_root}/docs/ — see hosts.md for the cloud-doc substrate variant
   Scope: That project only
   Owner: Updated during product discussions
 ```
@@ -35,7 +35,7 @@ Layer 2 — Project Memory
 Every atom runs this at the start of a session. **There is no environment setup check** — if the skill is running, it is installed.
 
 1. **Read preferences** → [preferences.md](preferences.md). Explicit read, every host. This is also where the recorded **doc backend** comes from — if one is recorded, use it and do not ask again → [doc-backend.md](doc-backend.md).
-2. **Resolve project** — look for `docs/00_MEMORY/` in the working directory (Mira: `.feishu-index.json`).
+2. **Resolve project** — look for `docs/00_MEMORY/` in the working directory (on the cloud-doc substrate: `.cloud-index.json`).
    - **Found** → continue.
    - **Not found** → this is a no-upstream run. Ask for the project name and initialize via `scripts/init_project.sh` **only if** the user wants a project; otherwise produce the deliverable directly in conversation and **do not write to disk** (see each atom's input contract).
 3. **Read `STATE.md`** — the fast path to "where are we". One read replaces inferring progress from the narrative log. Read it whole; it is a fixed-length summary.
@@ -158,7 +158,7 @@ HiringAgent 是一个候选人推荐系统，核心功能是为招聘岗位推�
 
 ## 2026-04-24 · 候选人资源数据分析（探索性）
 **背景：** 在项目中对候选人推荐数据做探索性分析。
-**数据源：** 飞书表格 [表名](url)，共 2874 条记录。
+**数据源：** 在线表格 [表名](url)，共 N 条记录。
 **分析思路（方法论沉淀）：**
 ### 思路一：锁定状态分析
 - 按 rank 分段统计锁定比例

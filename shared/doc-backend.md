@@ -36,9 +36,7 @@ Present the options as a form when the host renders one, otherwise as plain text
 > 文档写哪儿？默认是本地 Markdown（`docs/` 下，零配置、随时可用）。想直接落到云文档、方便分享和评审的话，我接一次就行，之后都走它，随时能换。
 >
 > - **本地 Markdown** —— 现在就能用，不装东西；缺点是分享要自己搬
-> - **飞书 / Lark 文档** —— 表格配图都验证过，团队评审顺
-> - **Notion** —— 有官方 CLI，支持 Markdown 直接建页
-> - **语雀 / Confluence / Google Docs / 其他** —— 都能接，方式各不相同；告诉我是哪个，我先确认它的写入方式再动手
+> - **飞书 / Lark、Notion、Confluence、Google Docs、语雀等云文档** —— 都能接，接入方式与认证成本各不相同；告诉我用哪个，我先确认它的写入路径和鉴权方式再动手
 
 用户说了具体产品但不在上面的清单里，**不要说"不支持"** —— 先按下一节的接入方式分类去查，确认清楚再回答能不能接。
 
@@ -102,7 +100,7 @@ After the user picks and the backend actually works, record it in `<主项目目
 
 ```markdown
 ## 文档后端
-- 选择：飞书文档（2026-09-15 确认）
+- 选择：云文档（{backend}，{date} 确认）
 - 安装：<实际用的安装方式>
 - 授权：每个新沙箱需重新登录一次
 - 落点：01_STRATEGY / 02_PRD / 04_RESOURCES 都写云文档；03_DESIGN 的 HTML 稿仍留本地

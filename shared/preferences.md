@@ -7,7 +7,7 @@ Three properties, all deliberate:
 | Property | Why |
 |---|---|
 | **Skill-owned file, in the project directory** | Survives skill updates; preferences are the user's asset, not the skill's |
-| **Read explicitly at startup, not host-loaded** | Works identically on Claude Code, Cursor, Mira, DoubaoWork — no host branch |
+| **Read explicitly at startup, not host-loaded** | Works identically across local-disk and cloud hosts — no host branch |
 | **Scoped to PM work** | Does not pollute coding sessions the way a global config does |
 
 ---
@@ -71,7 +71,7 @@ Same pattern as product-feature-helper's `.product-feature-helper-prefs.md`, and
   - Needs: one more project to confirm or refute
 
 ## 文档后端
-- 选择：{本地 Markdown / 飞书文档 / 其他}（{date} 确认）
+- 选择：{本地 Markdown / 云文档 / 其他}（{date} 确认）
 - 安装：{实际验证过的安装方式，未装则写「无需安装」}
 - 授权：{如每个新沙箱需重新登录一次}
 - 落点：{哪些目录写云文档，哪些留本地}
