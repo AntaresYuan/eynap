@@ -20,6 +20,9 @@ description: 产出或评审一份 PRD——Framework PRD（关键用户旅程 +
 
 启动流程、记忆读写、协议、命名规则、表述边界与沟通风格 —— 见 `shared/`：[memory](../../shared/memory.md) · [preferences](../../shared/preferences.md) · [conventions](../../shared/conventions.md) · [protocols](../../shared/protocols.md) · [hosts](../../shared/hosts.md) · [verification](../../shared/verification.md) · [doc-backend](../../shared/doc-backend.md)
 
+
+> **单独安装时**：本技能引用的 `../../shared/` 是全套共用的地基。若这些文件不存在（例如只装了单个技能），按本文自身的约定执行即可；要完整行为请装整套：`npx skills add AntaresYuan/eynap --skill '*'`。
+
 PRD 的结构标准、两级文档层次、多功能点 PRD 模板、写作原则 → [references/prd-protocols.md](references/prd-protocols.md)
 
 **本团队实际在用的 PRD 骨架与交互设计写法 → [references/prd-patterns.md](references/prd-patterns.md)。写正文前先读这份**——它给出团队已验证的章节顺序、交互表四列结构、描述列三段式（用户诉求 / 用户动作 / 阶段判定逻辑）与反模式。与 `prd-protocols.md` 冲突时，**以团队范式为准**：不要把 PRD 写成通用咨询报告的七章节结构。

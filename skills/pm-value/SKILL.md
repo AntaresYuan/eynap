@@ -20,6 +20,9 @@ description: 产出一份立项文档——把模糊想法收敛成明确的价�
 
 启动流程、记忆读写、`[批注]` / `[待定-XXX]` / `[Meta]` 协议、命名与版本规则、表述边界与沟通风格 —— 全部见 `shared/`：[memory](../../shared/memory.md) · [preferences](../../shared/preferences.md) · [conventions](../../shared/conventions.md) · [protocols](../../shared/protocols.md) · [hosts](../../shared/hosts.md) · [verification](../../shared/verification.md) · [doc-backend](../../shared/doc-backend.md)
 
+
+> **单独安装时**：本技能引用的 `../../shared/` 是全套共用的地基。若这些文件不存在（例如只装了单个技能），按本文自身的约定执行即可；要完整行为请装整套：`npx skills add AntaresYuan/eynap --skill '*'`。
+
 ---
 
 ## Mode

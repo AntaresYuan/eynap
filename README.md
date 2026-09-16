@@ -172,35 +172,60 @@ The license text in [LICENSE](LICENSE) governs; the following is the author's st
 
 ## 安装
 
-这套东西本体是 Markdown，不绑定任何一家宿主。按你的环境选一种：
-
-**1. Claude Code / 支持 plugin 的宿主**
+### 一行命令（推荐）
 
 ```bash
+npx skills add AntaresYuan/eynap --skill '*'
+```
+
+用的是 [Vercel 开源的 `skills` CLI](https://github.com/vercel-labs/skills)，
+自动识别你装了哪些 Agent 并放到对应目录，支持 Claude Code、Cursor、Codex、
+OpenCode 等 70 多个宿主。
+
+常用变体：
+
+```bash
+# 看看有哪些技能
+npx skills add AntaresYuan/eynap --list
+
+# 装到全局（所有项目可用），默认是装到当前项目
+npx skills add AntaresYuan/eynap --skill '*' -g
+
+# 只装给某个 Agent
+npx skills add AntaresYuan/eynap --skill '*' -a claude-code
+
+# 之后更新
+npx skills update
+```
+
+**建议装整套**（`--skill '*'`）。五个技能共读 `shared/` 下的一份地基——
+记忆、命名、协议、核查规则都在那儿。只装单个技能时那些引用会断，
+技能仍能用，但行为会退化成"没有上下文的单篇提示词"。
+
+### 手动安装
+
+不想用 CLI，或者宿主不在支持列表里：
+
+```bash
+# Claude Code / 支持 plugin 的宿主
 git clone https://github.com/AntaresYuan/eynap.git ~/.claude/plugins/eynap
-```
 
-重启宿主，用 `@` 调用。识别 `.claude-plugin/plugin.json`。
-
-**2. Cursor**
-
-```bash
+# Cursor
 git clone https://github.com/AntaresYuan/eynap.git .cursor/rules/eynap
+# 然后在 .cursorrules 里引用 skills/ai-pm/SKILL.md
+
+# 任意能读本地文件的 Agent
+git clone https://github.com/AntaresYuan/eynap.git
+# 在系统提示里写一行：需要产品工作时，先读 skills/ai-pm/SKILL.md
 ```
 
-在 `.cursorrules` 里引用 `skills/ai-pm/SKILL.md`。
+也可以从 [Releases](https://github.com/AntaresYuan/eynap/releases) 下 zip 包。
 
-**3. 任意能读本地文件的 Agent**
+### 不用 Agent
 
-克隆到项目任意位置，在系统提示里写一行：
+当成写作模板：按 `skills/<技能>/SKILL.md` 的结构自己填。
 
-> 需要产品工作时，先读 `skills/ai-pm/SKILL.md`。
-
-**4. 手动 / 无 Agent**
-
-当成写作模板用：按 `skills/<技能>/SKILL.md` 的结构自己填。
-
-最低要求只有一条：Agent 能读本地文件。第 4 种连这个都不需要。
+最低要求只有一条：Agent 能读本地文件。最后这种连这个都不需要。
 
 ## 怎么用
 
