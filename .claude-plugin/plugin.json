@@ -1,0 +1,5 @@
+{
+  "description": "AI Product Manager suite — orchestrator plus single-purpose atoms for research, value discovery, PRD, and entity state machines, sharing one cross-cutting foundation (memory, preferences, conventions, protocols, hosts, verification). Delivery of design systems, prototypes, and interaction docs is delegated to product-feature-helper.",
+  "name": "eynap",
+  "version": "2.0.0"
+}
