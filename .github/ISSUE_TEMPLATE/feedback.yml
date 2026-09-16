@@ -1,0 +1,26 @@
+name: 用下来卡住了 / Something didn't work
+description: 说说哪里不好用，附上真实场景
+labels: [feedback]
+body:
+  - type: dropdown
+    id: skill
+    attributes:
+      label: 哪个技能 / Which skill
+      options: [ai-pm（编排者）, pm-value, pm-prd, pm-entity, pm-research, shared/ 共享地基, 说不准]
+    validations: {required: true}
+  - type: textarea
+    id: what
+    attributes:
+      label: 你说了什么、它回了什么
+      description: 贴原话最有用。具体场景比「效果不好」有价值得多。
+    validations: {required: true}
+  - type: textarea
+    id: expected
+    attributes:
+      label: 你期望它怎么做
+    validations: {required: true}
+  - type: input
+    id: host
+    attributes:
+      label: 宿主环境
+      placeholder: Claude Code / Cursor / 其他
