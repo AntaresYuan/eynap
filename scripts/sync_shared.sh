@@ -33,4 +33,18 @@ if [ -n "$leftover" ]; then
   exit 1
 fi
 
-echo "引用检查通过：技能内无外部 shared 引用"
+# 逐条验证 _shared 引用能否真正解析——层级写错时不会被上面的检查发现
+bad=0
+while IFS= read -r f; do
+  case "$f" in *_migrated*|*_shared*) continue;; esac
+  d=$(dirname "$f")
+  for ref in $(grep -o '[.\/]*_shared/[a-z.-]*\.md' "$f" 2>/dev/null | sort -u); do
+    [ -f "$d/$ref" ] || { echo "  断链 $f → $ref" >&2; bad=$((bad+1)); }
+  done
+done < <(find skills -name '*.md')
+if [ "$bad" -gt 0 ]; then
+  echo "共 $bad 处断链，请修正层级" >&2
+  exit 1
+fi
+
+echo "引用检查通过：$(find skills -name '*.md' -not -path '*_shared*' -not -path '*_migrated*' | wc -l | tr -d ' ') 个文件，零断链"
