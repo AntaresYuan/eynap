@@ -11,6 +11,10 @@
 
 ---
 
+**站点：<https://antaresyuan.github.io/eynap-site/>** — 在线浏览、下载、提反馈。
+
+---
+
 ## 和初版的区别 / What changed
 
 初版是一条五 Scene 的单技能流水线：想改一段需求，也要从头走一遍。
