@@ -172,43 +172,38 @@ The license text in [LICENSE](LICENSE) governs; the following is the author's st
 
 ## 安装
 
-### 一行命令（推荐）
-
 ```bash
-npx skills add AntaresYuan/eynap --skill '*'
+npx skills add AntaresYuan/eynap -y
 ```
 
-用的是 [Vercel 开源的 `skills` CLI](https://github.com/vercel-labs/skills)，
-自动识别你装了哪些 Agent 并放到对应目录，支持 Claude Code、Cursor、Codex、
-OpenCode 等 70 多个宿主。
+一条命令装全五个技能。用的是 [Vercel 开源的 `skills` CLI](https://github.com/vercel-labs/skills)，
+它会自动认出你装了哪些 Agent，把技能放进各自的目录——Claude Code、Cursor、
+Codex、OpenCode 等 70 多个宿主都支持。
 
-常用变体：
+每个技能目录自带一份 `_shared/`（记忆、命名、协议、核查规则），装完即可用，
+不需要额外配置。
+
+<details>
+<summary>其他装法</summary>
 
 ```bash
-# 看看有哪些技能
+# 先看看有哪些技能
 npx skills add AntaresYuan/eynap --list
 
-# 装到全局（所有项目可用），默认是装到当前项目
-npx skills add AntaresYuan/eynap --skill '*' -g
+# 装到全局，所有项目可用（默认只装当前项目）
+npx skills add AntaresYuan/eynap -y -g
 
-# 只装给某个 Agent
-npx skills add AntaresYuan/eynap --skill '*' -a claude-code
+# 只给某个宿主装
+npx skills add AntaresYuan/eynap -y -a claude-code
+
+# 只装其中一个技能
+npx skills add AntaresYuan/eynap --skill pm-prd
 
 # 之后更新
 npx skills update
 ```
 
-每个技能目录都自带一份 `_shared/`（记忆、命名、协议、核查规则），
-所以单独装一个技能也能正常工作。仍然建议装整套——`ai-pm` 是编排者，
-没有其他四个可路由就没意义。
-
-> 改 `shared/` 时只改仓库根部那一份，然后跑 `scripts/sync_shared.sh` 同步。
-> 副本存在只是因为 skills CLI 只复制技能目录本身，装到宿主后
-> 指向仓库外的路径会断链。
-
-### 手动安装
-
-不想用 CLI，或者宿主不在支持列表里：
+不用 CLI 的话：
 
 ```bash
 # Claude Code / 支持 plugin 的宿主
@@ -225,11 +220,9 @@ git clone https://github.com/AntaresYuan/eynap.git
 
 也可以从 [Releases](https://github.com/AntaresYuan/eynap/releases) 下 zip 包。
 
-### 不用 Agent
+不用 Agent 时，当写作模板用：按 `skills/<技能>/SKILL.md` 的结构自己填。
 
-当成写作模板：按 `skills/<技能>/SKILL.md` 的结构自己填。
-
-最低要求只有一条：Agent 能读本地文件。最后这种连这个都不需要。
+</details>
 
 ## 怎么用
 
