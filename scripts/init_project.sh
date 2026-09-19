@@ -60,13 +60,16 @@ cat > "$DOCS/00_MEMORY/STATE.md" <<EOF
 > 与 SESSION_MEMORY 冲突时以叙事日志为准。字段说明见 \`shared/memory.md\`。
 
 \`\`\`yaml
-current_stage:  value          # research | value | prd | entity | design | delivery
+current_stage:  value          # research | value | flow | entity | design | prd
 gates_passed:   []             # value_anchor | pain_coverage | three_layer
 artifacts:
   research_report: null
   strategy_doc:    null
-  framework_prd:   null
+  flow_doc:        null
+  entities_doc:    null
   design_tokens:   null
+  interaction_doc: null
+  prd:             null
 open_items:     []
 updated:        $TODAY
 \`\`\`
@@ -88,32 +91,44 @@ cat > "$DOCS/02_PRD/README.md" <<EOF
 
 | 文件 | 用途 |
 |---|---|
-| \`framework-prd.md\` | Framework PRD 主文档：价值范围 / 关键用户旅程 / 页面结构 / 实体索引 |
+| \`flow.md\` | pm-flow：关键用户旅程 · MVP 范围 · Screen Tree |
+| \`entities.md\` | pm-entity：状态表 · 转移矩阵 · 每状态操作与字段行为 |
+| \`framework-prd.md\` | pm-prd：由立项文档、上面两份、交互文档**最后组装**的 PRD 成品 |
 
 命名规则 \`vX_Y_<desc>_<yyyymmdd>.md\` 见 \`shared/conventions.md\`。
-本 README 只说明目录用途，不承载 PRD 正文。
+本 README 只说明目录用途。**改流程或实体时改 flow.md / entities.md，再重新组装 PRD，不要直接改 PRD 正文。**
+EOF
+
+cat > "$DOCS/02_PRD/flow.md" <<EOF
+# Flow — $PROJECT_ID
+
+> 由 pm-flow 写。pm-entity 从这里抽实体；发现页面结构对不上时改回本文件，不改 PRD。
+
+## 1 Critical User Journeys
+*(3–5 条 CUJ，每条从一个具体痛点出发，到用户达成价值锚点结束)*
+
+## 2 MVP Scope
+*(按旅程定义，不写功能清单；每条核心旅程写 Entry → Info → Action → Outcome)*
+
+## 3 Screen Tree & Navigation
+*(全局导航树 + 每屏信息层级与主要交互；入口点显式标注 \`[Entry Point for Journey X]\`)*
+EOF
+
+cat > "$DOCS/02_PRD/entities.md" <<EOF
+# Entities — $PROJECT_ID
+
+> 由 pm-entity 写，输入是 flow.md。每个实体一节：状态、转移（含反向与越级）、每状态操作、字段行为。
+
+*(尚无实体)*
 EOF
 
 cat > "$DOCS/02_PRD/framework-prd.md" <<EOF
 # Framework PRD — $PROJECT_ID
 
-> 结构标准见 \`skills/pm-prd/references/prd-protocols.md\`。
-> 第 1–2 节由 pm-prd 写；第 3 节页面结构由 pm-prd 补全；第 4 节实体由 pm-entity 补全。
+> **组装产物，最后生成。** 由 pm-prd 从立项文档、flow.md、entities.md、交互文档组装。
+> 上游改了就重新组装，不要直接改这里的正文。骨架见 \`skills/pm-prd/references/prd-patterns.md\`。
 
-## 1 Background & Value Scope
-*(引用或简述 01_STRATEGY 的立项文档，不在此重复展开)*
-
-## 2 Critical User Journeys
-*(3–5 条 CUJ，每条从一个具体痛点出发，到用户达成价值锚点结束)*
-
-## 3 Screen Tree & Navigation
-*(全局导航树；入口点显式标注 \`[Entry Point for Journey X]\`)*
-
-## 4 Key Entities & Data Model
-*(实体定义与关系；状态机见 pm-entity 产出)*
-
-## 5 Feature Index
-*(各 Feature PRD 链接)*
+*(尚未组装)*
 EOF
 
 # ---- 03_DESIGN ----------------------------------------------------------
@@ -159,7 +174,7 @@ EOF
 echo "✅ Project '$PROJECT_ID' initialized."
 echo "   Memory:   $DOCS/00_MEMORY/ (CONTEXT_SNAPSHOT, SESSION_MEMORY, STATE)"
 echo "   Strategy: $DOCS/01_STRATEGY/DECISIONS.md"
-echo "   PRD:      $DOCS/02_PRD/ (README + framework-prd.md)"
+echo "   PRD:      $DOCS/02_PRD/ (README + flow.md + entities.md + framework-prd.md)"
 echo "   Design:   $DOCS/03_DESIGN/ (6 subdirs + design-tokens.md)"
 echo "   Tasks:    $DOCS/TODO.md"
 echo

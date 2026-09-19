@@ -1,6 +1,6 @@
 ---
 name: pm-entity
-description: 产出一份实体状态表与转移矩阵——状态定义、正反向转移、每状态的操作权限、字段的状态相关行为。当用户要定义数据模型、梳理某个业务对象的状态流转、或排查状态设计漏洞时使用。产出物落在 docs/02_PRD/。触发词：状态机、这个单子有哪些状态、能不能回退、数据模型、实体设计、什么时候能改哪些字段、状态流转。不负责：整篇需求文档（用 pm-prd）。
+description: 产出一份实体状态表与转移矩阵——状态定义、正反向转移、每状态的操作权限、字段的状态相关行为。当用户要定义数据模型、梳理某个业务对象的状态流转、或排查状态设计漏洞时使用。产出物落在 docs/02_PRD/entities.md。触发词：状态机、这个单子有哪些状态、能不能回退、数据模型、实体设计、什么时候能改哪些字段、状态流转。不负责：用户流程与页面结构（用 pm-flow）、组装成 PRD 文档（用 pm-prd）。
 ---
 
 # pm-entity — Entity & state machine
@@ -11,9 +11,9 @@ description: 产出一份实体状态表与转移矩阵——状态定义、正�
 
 | | |
 |---|---|
-| **有上游时读** | Framework PRD 第 2 节 CUJ 与第 3 节 Screen Tree（`docs/02_PRD/`） |
+| **有上游时读** | `docs/02_PRD/flow.md` 的 CUJ 与 Screen Tree；已有产品时，还要读现有数据模型作为约束 |
 | **无上游时问** | 这个实体在哪些流程里出现？谁会操作它？它从哪来、到哪结束？ |
-| **产出落点** | `docs/02_PRD/` —— Framework PRD 第 4 节，或单独的实体文档 |
+| **产出落点** | `docs/02_PRD/entities.md` —— 不直接写进 PRD，PRD 由 `pm-prd` 最后组装 |
 | **无项目目录时** | 状态表与转移矩阵直接在对话里给用户，**不落盘** |
 
 启动流程、记忆读写、协议、命名规则、表述边界与沟通风格 —— 见 `shared/`：[memory](_shared/memory.md) · [preferences](_shared/preferences.md) · [conventions](_shared/conventions.md) · [protocols](_shared/protocols.md) · [hosts](_shared/hosts.md) · [verification](_shared/verification.md) · [doc-backend](_shared/doc-backend.md)
@@ -111,7 +111,7 @@ After entity definitions stabilize, revisit the Screen Tree:
 - **Are there entity states that have no corresponding UI representation?**
 - Are there screens that assume data relationships the entity model doesn't support?
 
-If conflicts are found, adjust the page structure or entity model — and log the change in `SESSION_MEMORY.md`.
+If conflicts are found, adjust the entity model here, or send the page-structure change back to `flow.md` (via `pm-flow`) — never patch it only in the PRD. Log the change in `SESSION_MEMORY.md`.
 
 > **The third question does double duty.** Its answer is exactly the screenshot list the delivery layer needs: state table × screen, as a cartesian product. Answering it thoroughly here means nobody has to ask "哪些状态要截图" later → `skills/ai-pm/references/handoff-contract.md`.
 
@@ -133,6 +133,6 @@ A feature is only "ready to build" when all three are clear:
 
 ## Output contract
 
-On finishing: update `docs/00_MEMORY/STATE.md` — `current_stage: entity`, `gates_passed` if `three_layer` genuinely cleared, plus any `open_items`.
+On finishing: update `docs/00_MEMORY/STATE.md` — `current_stage: entity`, `artifacts.entities_doc`, `gates_passed` if `three_layer` genuinely cleared, plus any `open_items`.
 
-**[Next Step]** 三层齐备后走设计与交付（`skills/ai-pm/SKILL.md` Scene 5 的路由判定）。
+**[Next Step]** 三层齐备后走设计与交付（`skills/ai-pm/SKILL.md` Scene 5 的路由判定），最后由 `pm-prd` 组装成 PRD。

@@ -2,6 +2,8 @@
 
 This document defines the structural standards, naming conventions, and writing strategies for Product Requirement Documents (PRDs).
 
+> **This describes the finished, assembled PRD.** The journeys and Screen Tree sections are sourced from `docs/02_PRD/flow.md` (written by `pm-flow`), the entity section from `docs/02_PRD/entities.md` (written by `pm-entity`). `pm-prd` assembles them; it does not author those sections from scratch.
+
 ---
 
 ## Document Naming

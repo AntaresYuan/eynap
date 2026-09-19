@@ -5,13 +5,16 @@
 > **Stores enumerations and pointers only, never content.** When it disagrees with `SESSION_MEMORY.md`, the narrative log wins. Schema and update rules → `shared/memory.md`.
 
 ```yaml
-current_stage:  value          # research | value | prd | entity | design | delivery
+current_stage:  value          # research | value | flow | entity | design | prd
 gates_passed:   []             # value_anchor | pain_coverage | three_layer
 artifacts:                     # existing deliverables → path (null when absent)
   research_report: null
   strategy_doc:    null
-  framework_prd:   null
+  flow_doc:        null
+  entities_doc:    null
   design_tokens:   null
+  interaction_doc: null
+  prd:             null
 open_items:     []             # unresolved 待定项: "待定-XXX: one line"
 updated:        {yyyy-mm-dd}
 ```

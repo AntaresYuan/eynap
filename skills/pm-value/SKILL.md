@@ -1,6 +1,6 @@
 ---
 name: pm-value
-description: 产出一份立项文档——把模糊想法收敛成明确的价值锚点、目标用户、范围边界。当用户有个想法但还不确定值不值得做、或需要说清楚"为什么做这一版"时使用。产出物含价值锚点、In/Out scope、痛点与成功指标，落在 docs/01_STRATEGY/。触发词：我有个想法、这个值得做吗、帮我想清楚、要解决什么问题、这一版做什么不做什么、值不值得投入。不负责：写 PRD（用 pm-prd）、市场调研（用 pm-research）。
+description: 产出一份立项文档——把模糊想法收敛成明确的价值锚点、目标用户、范围边界。当用户有个想法但还不确定值不值得做、或需要说清楚"为什么做这一版"时使用。产出物含价值锚点、In/Out scope、痛点与成功指标，落在 docs/01_STRATEGY/。触发词：我有个想法、这个值得做吗、帮我想清楚、要解决什么问题、这一版做什么不做什么、值不值得投入。不负责：梳理流程（用 pm-flow）、组装 PRD（用 pm-prd）、市场调研（用 pm-research）。
 ---
 
 # pm-value — Value Discovery
@@ -84,4 +84,4 @@ As value anchors, scope, target users, and pain points are clarified, maintain o
 
 On finishing: update `docs/00_MEMORY/STATE.md` — `current_stage: value`, `artifacts.strategy_doc`, plus any `open_items` opened along the way.
 
-**[Next Step]** 价值锚点确立后，写需求文档走 `pm-prd`；需要真实用户或竞品证据走 `pm-research`。
+**[Next Step]** 价值锚点确立后，梳理用户旅程与页面结构走 `pm-flow`；需要真实用户或竞品证据走 `pm-research`。

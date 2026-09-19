@@ -10,7 +10,7 @@ ai-pm 侧的**单向契约**：把 ai-pm 前四个 Scene 已经积累的确定�
 
 | 情况 | 怎么做 |
 |---|---|
-| ai-pm 项目里已经跑过 Scene 2–4，现在要出交互说明 | 按下表逐字段预填，只保留两个需要人的环节 |
+| ai-pm 项目里已经有 `flow.md` 和 `entities.md`，现在要出交互说明 | 按下表逐字段预填，只保留两个需要人的环节 |
 | 用户直接单独下单"整理份交互文档"，没有上游 | 走 PFH 原本的第 3 / 7.1 步问答，本文件不适用 |
 | 上游只跑了一部分（如有 CUJ 但没有实体状态机） | **逐字段判断**，有上游的字段预填、无上游的字段照常问；不要因为缺一个字段就整张表回退成问答 |
 
@@ -25,17 +25,17 @@ ai-pm 侧的**单向契约**：把 ai-pm 前四个 Scene 已经积累的确定�
 | # | 需要的输入 | 有上游时从哪读 | 无上游时问什么 | 成本变化 |
 |---|---|---|---|---|
 | 1 | **目标页面 URL** | 立项文档（`docs/01_STRATEGY/`）里记录的产品地址；`docs/04_RESOURCES/` 中的竞品或自家产品链接 | PFH 第 1 步原话：要改哪个页面，要 URL；说明登录页可手动登录 | 问 → **确认**（仍需用户点头，不可跳过） |
-| 2 | **改现有 or 新增** | Framework PRD 第 3 节 Screen Tree：该屏是否已存在于导航树中 | PFH 第 3 步：改现有内容，还是新增东西？ | 问 → 推导 |
-| 3 | **想要什么交互** | Scene 3 每屏的**信息层级**与**主要交互**；Scene 4 Layer 4 的**操作矩阵**（每状态每角色可做什么） | PFH 第 3 步最贵的一步：请用户截图 + 详述想改成什么样 | 问 → **直接映射** |
-| 4 | **流程分几个环节** | Framework PRD 第 2 节 CUJ：**一个 journey step = 表格一行** | PFH 第 7.1 步问题 1 | 问 → 直接映射 |
-| 5 | **每个环节从哪进** | Screen Tree 上标注的 entry points（`[Entry Point for Journey A]` 这类标注） | PFH 第 7.1 步问题 2 | 问 → 直接映射 |
-| 6 | **哪些状态要截图** | Scene 4 state table **×** Scene 3 screen 的**笛卡尔积**，含空态 / 加载 / 报错 | PFH 第 7.1 步问题 3 | 问 → **笛卡尔积** |
-| 7 | **描述列：诉求 / 动作 / 规则** | CUJ 叙事（诉求与动作）+ Scene 4 每条 transition 的 **trigger 与 precondition**（规则与判定条件） | 现场逐条问 | 问 → 直接映射 |
+| 2 | **改现有 or 新增** | `flow.md` §3 Screen Tree：该屏是否已存在于导航树中 | PFH 第 3 步：改现有内容，还是新增东西？ | 问 → 推导 |
+| 3 | **想要什么交互** | `flow.md` §3 每屏的**信息层级**与**主要交互**；`entities.md` 的**操作矩阵**（每状态每角色可做什么） | PFH 第 3 步最贵的一步：请用户截图 + 详述想改成什么样 | 问 → **直接映射** |
+| 4 | **流程分几个环节** | `flow.md` §1 CUJ：**一个 journey step = 表格一行** | PFH 第 7.1 步问题 1 | 问 → 直接映射 |
+| 5 | **每个环节从哪进** | `flow.md` §3 Screen Tree 上标注的 entry points（`[Entry Point for Journey A]` 这类标注） | PFH 第 7.1 步问题 2 | 问 → 直接映射 |
+| 6 | **哪些状态要截图** | `entities.md` 状态表 **×** `flow.md` §3 各屏的**笛卡尔积**，含空态 / 加载 / 报错 | PFH 第 7.1 步问题 3 | 问 → **笛卡尔积** |
+| 7 | **描述列：诉求 / 动作 / 规则** | CUJ 叙事（诉求与动作）+ `entities.md` 每条 transition 的 **trigger 与 precondition**（规则与判定条件） | 现场逐条问 | 问 → 直接映射 |
 | 8 | **mock 数据长什么样** | Scene 1 的 persona + `docs/00_MEMORY/CONTEXT_SNAPSHOT.md` 里的真实故事 | 临时编 | 编 → **有依据** |
 
 ### 字段 6 的展开方式
 
-这是**最精确的一处对应**。Scene 4 的 Page Structure Validation 已经在问：
+这是**最精确的一处对应**。`pm-entity` 的 Page Structure Validation 已经在问：
 
 > *"Are there entity states that have no corresponding UI representation?"*
 
@@ -43,8 +43,8 @@ ai-pm 侧的**单向契约**：把 ai-pm 前四个 Scene 已经积累的确定�
 
 展开规则：
 
-1. 取 Scene 4 state table 的全部状态（如 `Draft / In Review / Approved / Rejected / Archived`）。
-2. 取 Scene 3 Screen Tree 中承载该实体的屏。
+1. 取 `entities.md` 状态表的全部状态（如 `Draft / In Review / Approved / Rejected / Archived`）。
+2. 取 `flow.md` §3 Screen Tree 中承载该实体的屏。
 3. 做笛卡尔积，**剔除业务上不可能的组合**（如"列表页 × 已归档"若产品规则是归档即隐藏，则剔除并在表里注明剔除理由）。
 4. 补上三类**状态机里没有、但界面上一定存在**的状态：**空态 / 加载中 / 报错**。这三类不来自实体状态机，容易漏，必须显式补。
 

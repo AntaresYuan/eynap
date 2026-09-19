@@ -230,7 +230,7 @@ File: `docs/03_DESIGN/handoff/{screen-name}.md`
 
 Before starting mockups, confirm this checklist is complete from Scene 3 (Interaction Design) and Scene 4 (Entity Definition):
 
-- [ ] Screen list defined (from Screen Tree in Framework PRD)
+- [ ] Screen list defined (from Screen Tree in `docs/02_PRD/flow.md`)
 - [ ] Each screen's information hierarchy described
 - [ ] Primary interactions per screen listed
 - [ ] Entity model defined and validated against page structure

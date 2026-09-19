@@ -68,12 +68,14 @@ The memory files are **append-only and unbounded**: a project running for months
 **Stores enumerations and pointers only — never content.** When it conflicts with `SESSION_MEMORY.md`, **the narrative log wins** (it is the append-only record of what actually happened; `STATE.md` is a derived cache).
 
 ```yaml
-current_stage:  research | value | prd | entity | design | delivery
+current_stage:  research | value | flow | entity | design | prd
 gates_passed:   [value_anchor, pain_coverage, three_layer]   # gates already cleared
 artifacts:      # existing deliverables → path
   strategy_doc:  docs/01_STRATEGY/v1_0_value_and_scope_20260914.md
-  framework_prd: docs/02_PRD/framework-prd.md
+  flow_doc:      docs/02_PRD/flow.md
+  entities_doc:  docs/02_PRD/entities.md
   design_tokens: null
+  prd:           null            # assembled last, from the files above
 open_items:     # unresolved 待定项: ID + one line
   - 待定-003: 通知触达范围未与法务对齐
 updated:        2026-09-14

@@ -76,21 +76,31 @@ check_value_anchor() {
   skip "whether the user actually CONFIRMED the anchor — only the conversation shows that"
 }
 
+# Real content = lines that are not headings, quotes, blank, or "*(...)" scaffold hints.
+real_lines() { grep -vE '^\s*(#|>|\*\(|$)'; }
+
+FLOW="$PRD_DIR/flow.md"
+ENTITIES="$PRD_DIR/entities.md"
+
+# Projects created with v2 kept journeys / Screen Tree inside framework-prd.md.
+legacy_hint() {
+  if ls "$PRD_DIR"/*framework*.md >/dev/null 2>&1; then
+    echo "   (v2 layout? journeys and Screen Tree used to live in framework-prd.md §2/§3 —"
+    echo "    move them into flow.md; entities into entities.md; then re-assemble the PRD.)"
+  fi
+}
+
 check_pain_coverage() {
   echo "── gate: pain_coverage ──"
-  local prd
-  prd="$(ls "$PRD_DIR"/framework-prd.md "$PRD_DIR"/*framework*.md 2>/dev/null | head -1)"
-  if [ -z "$prd" ]; then
-    fail "no Framework PRD in 02_PRD/"
+  if [ ! -f "$FLOW" ]; then
+    fail "no flow.md in 02_PRD/ — journeys not recorded (written by pm-flow)"
+    legacy_hint
     return
   fi
-  # Section 2 (CUJ) must have real content, not just the scaffold comment.
-  local cuj
-  cuj="$(awk '/^## 2 /,/^## 3 /' "$prd" | grep -vE '^\s*(#|>|\*\(|$)' | head -5)"
-  if [ -z "$cuj" ]; then
-    fail "$(basename "$prd"): Section 2 (Critical User Journeys) is still empty scaffold"
+  if [ -z "$(awk '/^## 1 /,/^## 2 /' "$FLOW" | real_lines | head -1)" ]; then
+    fail "flow.md: §1 Critical User Journeys is still empty scaffold"
   else
-    pass "$(basename "$prd"): Section 2 has journey content"
+    pass "flow.md: §1 has journey content"
   fi
   if has_todo_entries "$DOCS/TODO.md"; then
     pass "TODO.md has real TODO-XXX entries — deferrals can be traced"
@@ -102,21 +112,19 @@ check_pain_coverage() {
 
 check_three_layer() {
   echo "── gate: three_layer ──"
-  local prd
-  prd="$(ls "$PRD_DIR"/framework-prd.md "$PRD_DIR"/*framework*.md 2>/dev/null | head -1)"
-  if [ -z "$prd" ]; then
-    fail "no Framework PRD in 02_PRD/"
-    return
-  fi
   local missing=""
-  awk '/^## 3 /,/^## 4 /' "$prd" | grep -qvE '^\s*(#|>|\*\(|$)' || missing="$missing Screen-Tree(§3)"
-  awk '/^## 4 /,/^## 5 /' "$prd" | grep -qvE '^\s*(#|>|\*\(|$)' || missing="$missing Entities(§4)"
-  # A real state machine writes transitions; look for the arrow form.
-  if ! grep -rqE '→|->' "$PRD_DIR" 2>/dev/null; then
-    missing="$missing State-transitions"
+  if [ ! -f "$FLOW" ] || [ -z "$(awk '/^## 3 /{f=1} f' "$FLOW" | real_lines | head -1)" ]; then
+    missing="$missing Screen-Tree(flow.md §3)"
+  fi
+  if [ ! -f "$ENTITIES" ] || [ -z "$(real_lines < "$ENTITIES" | head -1)" ]; then
+    missing="$missing Entities(entities.md)"
+  elif ! grep -qE '→|->' "$ENTITIES"; then
+    # A real state machine writes transitions; look for the arrow form.
+    missing="$missing State-transitions(entities.md)"
   fi
   if [ -n "$missing" ]; then
     fail "incomplete:$missing — do NOT say \"ready to build\""
+    [ -f "$FLOW" ] || legacy_hint
   else
     pass "Screen Tree, entities and state transitions all present"
   fi

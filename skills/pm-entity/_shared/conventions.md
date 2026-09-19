@@ -60,10 +60,12 @@ All IDs are zero-padded to three digits and **never reused**, even after an item
 │   │   ├── SESSION_MEMORY.md        # Session log (append-only)
 │   │   └── STATE.md                 # ★ The only coordination point between atoms
 │   ├── 01_STRATEGY/                 # 立项文档（价值与范围）+ DECISIONS.md
-│   ├── 02_PRD/                      # PRD docs — framework + feature level
-│   │   ├── README.md                # 目录说明 & 各 PRD 文件用途
-│   │   └── framework-prd.md         # 默认 Framework PRD 主文档（可按项目约定更名）
-│   ├── 03_DESIGN/                   # 设计与中间产物：PRD 之后、开发之前
+│   ├── 02_PRD/                      # 流程、实体，以及最后组装出的 PRD
+│   │   ├── README.md                # 目录说明 & 各文件用途
+│   │   ├── flow.md                  # pm-flow：旅程 · MVP 范围 · Screen Tree
+│   │   ├── entities.md              # pm-entity：状态表 · 转移矩阵
+│   │   └── framework-prd.md         # pm-prd：由上面两份 + 立项 + 交互文档组装而成
+│   ├── 03_DESIGN/                   # 设计与中间产物：实体之后、组装 PRD 之前
 │   │   ├── design-tokens.md         # 真实 token（brownfield 提取 / greenfield 自定）
 │   │   ├── screens/                 # 定稿界面
 │   │   ├── handoff/                 # 每屏交付说明
@@ -80,7 +82,7 @@ All IDs are zero-padded to three digits and **never reused**, even after an item
 
 ### What goes in 03_DESIGN
 
-PRD answers **what to build**; `03_DESIGN/` answers **how it looks, what it says, what the tech approach is**.
+`flow.md` and `entities.md` answer **what to build**; `03_DESIGN/` answers **how it looks, what it says, what the tech approach is**; the PRD packages both for engineering.
 
 | Subdirectory | Contents |
 |---|---|
@@ -107,7 +109,9 @@ Which atom writes where. Reading is unrestricted; **writing outside your own col
 |---|---|
 | `docs/00_MEMORY/` | Every atom (memory is shared) |
 | `docs/01_STRATEGY/` | `pm-value` |
-| `docs/02_PRD/` | `pm-prd`, `pm-entity` |
+| `docs/02_PRD/flow.md` | `pm-flow` |
+| `docs/02_PRD/entities.md` | `pm-entity` |
+| `docs/02_PRD/` 下的 PRD 成品 | `pm-prd` —— 只组装，不改上游文件 |
 | `docs/03_DESIGN/` | product-feature-helper (delivery layer) |
 | `docs/04_RESOURCES/` | `pm-research` |
 | `docs/TODO.md` | Every atom |

@@ -1,6 +1,6 @@
 # Eynap — Everything You Need as an AI PM
 
-**An AI product-manager skill kit: one orchestrator, five independently callable skills, and one shared foundation.**
+**An AI product-manager skill kit: one orchestrator, six independently callable skills, and one shared foundation.**
 
 > This is an adaptation of [SmileLiuuuu/ai-pm](https://github.com/SmileLiuuuu/ai-pm),
 > released under the same CC BY-NC 4.0 license. The original author retains copyright on v1.0.0.
@@ -16,14 +16,16 @@
 
 v1 was a single five-Scene pipeline: to change one requirement you still had to run the whole thing from the start. v2 splits it apart:
 
-| | v1.0.0 (original) | v2.0.0 (this project) |
+| | v1.0.0 (original) | v3.0.0 (this project) |
 |---|---|---|
-| Structure | one SKILL.md, 581 lines | one orchestrator + five skills |
+| Structure | one SKILL.md, 581 lines | one orchestrator + six skills |
 | Invocation | the whole pipeline every time | call whichever skill the task needs |
 | Cross-cutting rules | scattered across the Scenes | extracted into `shared/`, one copy only |
 | Missing upstream | depended on prior Scenes | each skill asks for what it needs itself |
 
 The methodology is unchanged and comes entirely from v1: value anchors, scenario-based MVP rather than feature lists, PRDs that emerge as understanding deepens.
+
+**v3 changes the order.** v2 wrote the PRD before the entity model and the design, then patched sections into it. But the PRD's journey, entity and interaction chapters *are* those outputs. v3 splits journeys and page structure out into `pm-flow`, and makes `pm-prd` the last step: it assembles the PRD from the files upstream skills produced. Chain order: **value → flow → entity → design → prd**; research is called on demand, not run first.
 
 ## What's inside
 
@@ -32,11 +34,12 @@ The methodology is unchanged and comes entirely from v1: value anchors, scenario
 | `ai-pm` | Orchestrator: detects stage, routes to a skill, checks gates; produces no deliverable itself | — |
 | `pm-research` | Purpose-first research: business-funnel walkthrough plus single-variable controlled experiments, evidence-graded | `docs/04_RESOURCES/` |
 | `pm-value` | Mines value anchors from real stories, reality-checks, converges the charter and scope | `docs/01_STRATEGY/` |
-| `pm-prd` | Journeys, MVP, page structure; goals split into product vs. algorithm metrics, four-column interaction tables | `docs/02_PRD/` |
-| `pm-entity` | State tables, forward/backward transitions, per-state permissions and field behavior | `docs/02_PRD/` |
+| `pm-flow` | Critical user journeys, journey-based MVP scope, Screen Tree with per-screen information hierarchy | `docs/02_PRD/flow.md` |
+| `pm-entity` | State tables, forward/backward transitions, per-state permissions and field behavior | `docs/02_PRD/entities.md` |
 | `product-feature-helper` | Extracts tokens from a real page, injects a clickable prototype, interaction docs with annotated screenshots | `docs/03_DESIGN/` |
+| `pm-prd` | Assembles the PRD last from the files above; writes the PRD-only sections (goals split into product vs. algorithm metrics, rules, phasing); flags where upstream files disagree | `docs/02_PRD/` |
 
-`product-feature-helper` is an **external skill** and is not bundled here. Without it the first four stages still run end to end — you just will not get a clickable prototype or annotated interaction notes. Swap in whatever design/prototyping skill you already use; the handoff contract is in [`skills/ai-pm/references/handoff-contract.md`](skills/ai-pm/references/handoff-contract.md).
+`product-feature-helper` is an **external skill** and is not bundled here. Without it the other stages still run — value, flow, entity, and PRD assembly — you just will not get a clickable prototype or annotated interaction notes. Swap in whatever design/prototyping skill you already use; the handoff contract is in [`skills/ai-pm/references/handoff-contract.md`](skills/ai-pm/references/handoff-contract.md).
 
 `shared/` is the one foundation every skill reads: memory, preferences, naming, protocols, host differences, wording standards. The single source of truth lives at the repo root; each skill directory carries a generated `_shared/` copy so it stays self-contained after install. Edit the root copy, then run `scripts/sync_shared.sh`.
 
@@ -79,7 +82,8 @@ Bring one concrete task — you do not have to start from the beginning:
 | You want to | Say |
 |---|---|
 | A fuzzy idea needs to become a charter | `/pm-value` |
-| Write a PRD or lay out the user flow | `/pm-prd` |
+| Lay out user journeys, MVP scope, page structure | `/pm-flow` |
+| Get a PRD to hand to engineering, or review one | `/pm-prd` — it checks what upstream is missing first |
 | Untangle a business object's states, permissions, fields | `/pm-entity` |
 | Research or benchmark, with the other side's performance quantified | `/pm-research` |
 | Build a new product and don't know where to start | "build a product from scratch" — the orchestrator routes by stage |
@@ -131,7 +135,7 @@ The license text in [LICENSE](LICENSE) governs; the following is the author's st
 
 # Eynap — Everything You Need as an AI PM（中文版）
 
-**把产品经理的活拆成能单独调用的技能：1 个编排者 + 5 个技能 + 1 份共享地基。**
+**把产品经理的活拆成能单独调用的技能：1 个编排者 + 6 个技能 + 1 份共享地基。**
 
 > 本项目是 [SmileLiuuuu/ai-pm](https://github.com/SmileLiuuuu/ai-pm) 的重构衍生版本。
 > 原作者保留初版著作权，本项目沿用 CC BY-NC 4.0 授权。详见[版权与鸣谢](#credits--版权与鸣谢)。
@@ -146,14 +150,16 @@ The license text in [LICENSE](LICENSE) governs; the following is the author's st
 
 初版是一条五 Scene 的单技能流水线：想改一段需求，也要从头走一遍。这一版把它拆开了：
 
-| | v1.0.0（初版） | v2.0.0（本项目） |
+| | v1.0.0（初版） | v3.0.0（本项目） |
 |---|---|---|
-| 结构 | 1 个 SKILL.md，581 行 | 1 个编排者 + 5 个技能 |
+| 结构 | 1 个 SKILL.md，581 行 | 1 个编排者 + 6 个技能 |
 | 调用 | 走完整条流水线 | 哪件事需要就调哪个 |
 | 横切规则 | 散在各 Scene 里 | 抽成 `shared/`，只存一份 |
 | 缺上游时 | 依赖前序 Scene 的产出 | 技能自己把必要信息问齐 |
 
 方法论骨架没有变，全部来自初版：价值锚点、场景而非功能清单、PRD 随理解加深而涌现。
+
+**v3 调整了顺序。** v2 先写 PRD，再把实体和设计的结果补进去。但 PRD 里的旅程、实体、交互三章，本来就是这几步的产出。v3 把旅程与页面结构拆成 `pm-flow`，`pm-prd` 改为最后一步，用上游各技能产出的文件组装 PRD。整条链的顺序：**立项 → 流程 → 实体 → 设计 → PRD**；调研按需调用，不再排在第一步。
 
 ## 这里有什么
 
@@ -162,11 +168,12 @@ The license text in [LICENSE](LICENSE) governs; the following is the author's st
 | `ai-pm` | 编排者：判定阶段、路由技能、检查关卡，自己不产出交付物 | — |
 | `pm-research` | 目的先行的调研：业务漏斗走查 + 单变量对照实验，证据分级 | `docs/04_RESOURCES/` |
 | `pm-value` | 从真实故事挖价值锚点，现实检验，收敛立项与范围 | `docs/01_STRATEGY/` |
-| `pm-prd` | 旅程、MVP、页面结构；目标分产品/算法写指标，交互四列表 | `docs/02_PRD/` |
-| `pm-entity` | 状态表、正反向转移、每状态权限与字段行为 | `docs/02_PRD/` |
+| `pm-flow` | 关键用户旅程、按旅程定义的 MVP 范围、Screen Tree 与每屏信息层级 | `docs/02_PRD/flow.md` |
+| `pm-entity` | 状态表、正反向转移、每状态权限与字段行为 | `docs/02_PRD/entities.md` |
 | `product-feature-helper` | 真实页面提取 token、注入可点原型、带标注截图的交互说明 | `docs/03_DESIGN/` |
+| `pm-prd` | 最后一步：用上面几份文件组装 PRD；补写只属于 PRD 的章节（目标分产品/算法写指标、规则、分期）；指出上游之间对不上的地方 | `docs/02_PRD/` |
 
-`product-feature-helper` 是**外部技能**，本仓库不含它——没有它，前四环照常跑完，只是产不出可点原型和带标注的交互说明。换成你自己惯用的设计/原型技能也行，交接契约写在 [`skills/ai-pm/references/handoff-contract.md`](skills/ai-pm/references/handoff-contract.md)。
+`product-feature-helper` 是**外部技能**，本仓库不含它——没有它，其余几环（立项、流程、实体、组装 PRD）照常跑完，只是产不出可点原型和带标注的交互说明。换成你自己惯用的设计/原型技能也行，交接契约写在 [`skills/ai-pm/references/handoff-contract.md`](skills/ai-pm/references/handoff-contract.md)。
 
 `shared/` 是所有技能共读的一份地基：记忆、偏好、命名、协议、宿主差异、措辞规范。仓库根部那份是唯一真源，每个技能目录下的 `_shared/` 是脚本生成的副本——这样装到宿主后技能仍然自洽。改动只改根部，然后跑 `scripts/sync_shared.sh`。
 
@@ -176,7 +183,7 @@ The license text in [LICENSE](LICENSE) governs; the following is the author's st
 npx skills add AntaresYuan/eynap -y
 ```
 
-一条命令装全五个技能。用的是 [Vercel 开源的 `skills` CLI](https://github.com/vercel-labs/skills)，
+一条命令装全六个技能。用的是 [Vercel 开源的 `skills` CLI](https://github.com/vercel-labs/skills)，
 它会自动认出你装了哪些 Agent，把技能放进各自的目录——Claude Code、Cursor、
 Codex、OpenCode 等 70 多个宿主都支持。
 
@@ -231,7 +238,8 @@ git clone https://github.com/AntaresYuan/eynap.git
 | 你要做的事 | 说什么 |
 |---|---|
 | 想法很模糊，要收敛成能立项的文档 | `/pm-value` |
-| 写 PRD，或把用户流程讲清楚 | `/pm-prd` |
+| 把用户旅程、MVP 范围、页面结构讲清楚 | `/pm-flow` |
+| 要一份交给研发的 PRD，或评审已有 PRD | `/pm-prd`，它会先查上游缺什么 |
 | 一个业务对象的状态、权限、字段没理清 | `/pm-entity` |
 | 做调研或对标，想量化对方效果 | `/pm-research` |
 | 从零做新产品，不知道先干哪步 | 「从头做一个产品」，编排者按阶段路由 |
@@ -266,7 +274,7 @@ bash scripts/check_gate.sh <project_root> [value_anchor|pain_coverage|three_laye
 
 本套件的初版（v1.0.0）由 **SmileLiuuuu** 创作，原始仓库 [github.com/SmileLiuuuu/ai-pm](https://github.com/SmileLiuuuu/ai-pm)，按 CC BY-NC 4.0 授权。
 
-当前版本（v2.0.0）是在其基础上重构的衍生作品：把原先的五 Scene 单技能流水线，拆成 1 个编排者 + 5 个可单独调用的技能，并抽出一份共享地基。
+当前版本（v3.0.0）是在其基础上重构的衍生作品：把原先的五 Scene 单技能流水线，拆成 1 个编排者 + 6 个可单独调用的技能，并抽出一份共享地基。
 
 依据 CC BY-NC 4.0，本衍生作品同样以 CC BY-NC 4.0 授权、保留原作者署名、**不得用于商业用途**。原作以「现状」提供，不附任何明示或默示担保。
 
