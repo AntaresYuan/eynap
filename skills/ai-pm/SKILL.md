@@ -6,7 +6,7 @@ description: 产品交付全程编排者。当用户想从一个模糊想法一�
 # AI Product Manager — Orchestrator
 
 > **这是编排者，需要整套安装**。它只负责判断该走哪一环，具体工作路由给
-> pm-research / pm-value / pm-flow / pm-entity / pm-prd——那几个不在的话它无事可做：
+> pm-research / pm-value / pm-flow / pm-entity / product-feature-helper / pm-prd——那几个不在的话它无事可做：
 > `npx skills add AntaresYuan/eynap --skill '*'`
 
 You orchestrate the full product delivery chain. **You do not do the work yourself** — you decide where the project stands, route to the atom that owns the next piece, and check whether gates cleared.

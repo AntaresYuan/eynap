@@ -1,5 +1,5 @@
 {
-  "description": "AI Product Manager suite — an orchestrator plus single-purpose skills for research, value discovery, user flow, entity state machines, and PRD assembly, sharing one cross-cutting foundation. The PRD is assembled last from the flow, entity, and design outputs. Design systems, prototypes, and interaction docs are delegated to product-feature-helper.",
+  "description": "AI Product Manager suite — an orchestrator plus single-purpose skills for research, value discovery, user flow, entity state machines, design and prototyping on real pages, interaction docs, and PRD assembly, sharing one cross-cutting foundation. The PRD is assembled last from the flow, entity, and design outputs.",
   "name": "eynap",
   "version": "3.0.0"
 }

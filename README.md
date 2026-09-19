@@ -39,7 +39,7 @@ The methodology is unchanged and comes entirely from v1: value anchors, scenario
 | `product-feature-helper` | Extracts tokens from a real page, injects a clickable prototype, interaction docs with annotated screenshots | `docs/03_DESIGN/` |
 | `pm-prd` | Assembles the PRD last from the files above; writes the PRD-only sections (goals split into product vs. algorithm metrics, rules, phasing); flags where upstream files disagree | `docs/02_PRD/` |
 
-`product-feature-helper` is an **external skill** and is not bundled here. Without it the other stages still run — value, flow, entity, and PRD assembly — you just will not get a clickable prototype or annotated interaction notes. Swap in whatever design/prototyping skill you already use; the handoff contract is in [`skills/ai-pm/references/handoff-contract.md`](skills/ai-pm/references/handoff-contract.md).
+`product-feature-helper` is **bundled** and can also be called on its own — to try a feature idea on a real page, or to turn a flow into an interaction doc with annotated screenshots. Inside an ai-pm project it reads `flow.md` and `entities.md` instead of asking you to describe the interaction from scratch; the handoff contract is in [`skills/ai-pm/references/handoff-contract.md`](skills/ai-pm/references/handoff-contract.md). It keeps its own MIT license (`skills/product-feature-helper/LICENSE`).
 
 `shared/` is the one foundation every skill reads: memory, preferences, naming, protocols, host differences, wording standards. The single source of truth lives at the repo root; each skill directory carries a generated `_shared/` copy so it stays self-contained after install. Edit the root copy, then run `scripts/sync_shared.sh`.
 
@@ -173,7 +173,7 @@ The license text in [LICENSE](LICENSE) governs; the following is the author's st
 | `product-feature-helper` | 真实页面提取 token、注入可点原型、带标注截图的交互说明 | `docs/03_DESIGN/` |
 | `pm-prd` | 最后一步：用上面几份文件组装 PRD；补写只属于 PRD 的章节（目标分产品/算法写指标、规则、分期）；指出上游之间对不上的地方 | `docs/02_PRD/` |
 
-`product-feature-helper` 是**外部技能**，本仓库不含它——没有它，其余几环（立项、流程、实体、组装 PRD）照常跑完，只是产不出可点原型和带标注的交互说明。换成你自己惯用的设计/原型技能也行，交接契约写在 [`skills/ai-pm/references/handoff-contract.md`](skills/ai-pm/references/handoff-contract.md)。
+`product-feature-helper` **已随套件一起提供**，也可以单独调用：在真实页面上快速试一个功能想法，或把流程整理成带标注截图的交互说明。在 ai-pm 项目里调用时，它直接读 `flow.md` 和 `entities.md`，不用你从头描述想要什么交互；交接契约写在 [`skills/ai-pm/references/handoff-contract.md`](skills/ai-pm/references/handoff-contract.md)。它保留自己的 MIT 许可（`skills/product-feature-helper/LICENSE`）。
 
 `shared/` 是所有技能共读的一份地基：记忆、偏好、命名、协议、宿主差异、措辞规范。仓库根部那份是唯一真源，每个技能目录下的 `_shared/` 是脚本生成的副本——这样装到宿主后技能仍然自洽。改动只改根部，然后跑 `scripts/sync_shared.sh`。
 
@@ -183,7 +183,7 @@ The license text in [LICENSE](LICENSE) governs; the following is the author's st
 npx skills add AntaresYuan/eynap -y
 ```
 
-一条命令装全六个技能。用的是 [Vercel 开源的 `skills` CLI](https://github.com/vercel-labs/skills)，
+一条命令装全套：1 个编排者 + 6 个技能。用的是 [Vercel 开源的 `skills` CLI](https://github.com/vercel-labs/skills)，
 它会自动认出你装了哪些 Agent，把技能放进各自的目录——Claude Code、Cursor、
 Codex、OpenCode 等 70 多个宿主都支持。
 
