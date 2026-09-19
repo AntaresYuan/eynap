@@ -36,9 +36,9 @@ The methodology is unchanged and comes entirely from v1: value anchors, scenario
 | `pm-entity` | State tables, forward/backward transitions, per-state permissions and field behavior | `docs/02_PRD/` |
 | `product-feature-helper` | Extracts tokens from a real page, injects a clickable prototype, interaction docs with annotated screenshots | `docs/03_DESIGN/` |
 
-`product-feature-helper` is an **external skill**, installed separately and not included in this repo.
+`product-feature-helper` is an **external skill** and is not bundled here. Without it the first four stages still run end to end — you just will not get a clickable prototype or annotated interaction notes. Swap in whatever design/prototyping skill you already use; the handoff contract is in [`skills/ai-pm/references/handoff-contract.md`](skills/ai-pm/references/handoff-contract.md).
 
-`shared/` is one foundation every skill reads: memory, preferences, naming, protocols, host differences, wording standards. Place it alongside the skills on deploy — **do not copy it into each skill directory**; having a single copy is the point.
+`shared/` is the one foundation every skill reads: memory, preferences, naming, protocols, host differences, wording standards. The single source of truth lives at the repo root; each skill directory carries a generated `_shared/` copy so it stays self-contained after install. Edit the root copy, then run `scripts/sync_shared.sh`.
 
 ## Install
 
@@ -166,9 +166,9 @@ The license text in [LICENSE](LICENSE) governs; the following is the author's st
 | `pm-entity` | 状态表、正反向转移、每状态权限与字段行为 | `docs/02_PRD/` |
 | `product-feature-helper` | 真实页面提取 token、注入可点原型、带标注截图的交互说明 | `docs/03_DESIGN/` |
 
-`product-feature-helper` 是**外部技能**，需另行安装，本仓库不包含。
+`product-feature-helper` 是**外部技能**，本仓库不含它——没有它，前四环照常跑完，只是产不出可点原型和带标注的交互说明。换成你自己惯用的设计/原型技能也行，交接契约写在 [`skills/ai-pm/references/handoff-contract.md`](skills/ai-pm/references/handoff-contract.md)。
 
-`shared/` 是所有技能共读的一份地基：记忆、偏好、命名、协议、宿主差异、措辞规范。部署时要一并放置，**不要复制进各技能目录**——它的价值就在于只有一份。
+`shared/` 是所有技能共读的一份地基：记忆、偏好、命名、协议、宿主差异、措辞规范。仓库根部那份是唯一真源，每个技能目录下的 `_shared/` 是脚本生成的副本——这样装到宿主后技能仍然自洽。改动只改根部，然后跑 `scripts/sync_shared.sh`。
 
 ## 安装
 
